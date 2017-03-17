@@ -1,0 +1,69 @@
+name:                blast-servant
+version:             0.1.0.0
+synopsis:            A Servant backend for Blast.
+description:         Please see README.md
+homepage:            https://github.com/jcmincke/blast#readme
+license:             MPL-2.0
+license-file:        LICENSE
+author:              Jean-Christophe Mincke
+maintainer:          jeanchristophe.mincke@gmail.com
+copyright:           2016-2017 Jean-Christophe Mincke
+category:            Distributed computing
+build-type:          Simple
+
+cabal-version:       >=1.10
+
+executable blast-servant-exe
+  main-is:             Main.hs
+  other-modules:       Api
+                     , App
+  build-depends:
+    base >= 4.7 && < 5
+    , aeson
+    , binary
+    , blast
+    , bytestring
+    , cereal
+    , monad-logger
+    , persistent
+    , persistent-template
+    , persistent-sqlite
+    , persistent-postgresql
+    , servant
+    , servant-server
+    , string-conversions
+    , text
+    , transformers
+    , unix
+    , wai
+    , warp
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:      test
+                     , src
+  other-modules:       Api
+                     , App
+                     , AppSpec
+  build-depends:
+    base >=4.8 && <4.9
+    , hspec
+    , aeson
+    , persistent
+    , monad-logger
+    , persistent-template
+    , persistent-sqlite
+    , transformers
+    , wai
+    , servant
+    , servant-client
+    , servant-server
+    , string-conversions
+    , warp
+    , http-client
+    , text
+    , mockery
+  default-language:    Haskell2010

@@ -1,0 +1,792 @@
+
+==================== FINAL INTERFACE ====================
+2017-03-17 17:00:16.595192 UTC
+
+interface main@main:Main [family instance module] 8002
+  interface hash: 530b856950d86992dede6ac1f94d5167
+  ABI hash: 50066df79d674314f5e2cc31edc002e5
+  export-list hash: 7bb960a9d541b64dc4b96e1cf01bd95f
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 73b9557bc3b8a2c02516864ce97d3352
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Main.main
+  Main.setRequestBody2
+  Main.SlaveRequest{Main.SlaveRequest}
+module dependencies:
+package dependencies: HTTP-4000.3.5@HTTP-4000.3.5-J3FRIDA0OGiJpLXZa2UC8z
+                      aeson-1.0.2.1@aeson-1.0.2.1-1PgNnQdZpa7BG8cq9P3bMU
+                      array-0.5.1.1@array-0.5.1.1
+                      attoparsec-0.13.1.0@attoparsec-0.13.1.0-HCAgpBrKCLJ5li8FbfXxE1
+                      base-4.9.1.0
+                      base-compat-0.9.1@base-compat-0.9.1-B9geVZFtCvE8ERS7UcvkRz
+                      binary-0.8.3.0@binary-0.8.3.0
+                      blaze-builder-0.4.0.2@blaze-builder-0.4.0.2-CGB8BvrFgghHy5bLy0SFOg
+                      bytestring-0.10.8.1@bytestring-0.10.8.1
+                      case-insensitive-1.2.0.8@case-insensitive-1.2.0.8-JH9TmxTHpl01TJ0h86Xqcf
+                      containers-0.5.7.1@containers-0.5.7.1
+                      deepseq-1.4.2.0@deepseq-1.4.2.0
+                      dlist-0.8.0.2@dlist-0.8.0.2-6Wnps4GD7EFnRucVzXIFD
+                      ghc-boot-th-8.0.2@ghc-boot-th-8.0.2 ghc-prim-0.5.0.0
+                      hashable-1.2.5.0@hashable-1.2.5.0-F4MWeNuv2sjJRqBd2T5ul4
+                      http-api-data-0.3.5@http-api-data-0.3.5-3AuNmJIQrFpFAo17EGCjDT
+                      http-media-0.6.4@http-media-0.6.4-IiIO5ijbeES53rTISAjOqx
+                      integer-gmp-1.0.0.1
+                      integer-logarithms-1.0.1@integer-logarithms-1.0.1-IEHCuEd5sG4JjSjlx7m5JF
+                      mtl-2.2.1@mtl-2.2.1-BLKBelFsPB3BoFeSWSOYj6
+                      network-2.6.3.1@network-2.6.3.1-ABFtZSq90Z9BfMXNiqgBoe
+                      network-uri-2.6.1.0@network-uri-2.6.1.0-EwGrJ9bdUqR1E7dAIJ4cwF
+                      parsec-3.1.11@parsec-3.1.11-113irVHGgd88sRnywByDNw
+                      primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH
+                      random-1.1@random-1.1-9tceXaeYIMZ4JrKq20Egog
+                      scientific-0.3.4.10@scientific-0.3.4.10-HRQd1hS6vMV6hvjSlMi8B0
+                      servant-0.9.1.1@servant-0.9.1.1-7RhVBUo3ZEV9ZgZjltmw69
+                      string-conversions-0.4.0.1@string-conversions-0.4.0.1-5bhARACLQyXG4DLNegoSj4
+                      tagged-0.8.5@tagged-0.8.5-1mTloBSoUxv8dqUr8XBGBt
+                      template-haskell-2.11.1.0
+                      text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR
+                      time-1.6.0.1@time-1.6.0.1
+                      time-locale-compat-0.1.1.3@time-locale-compat-0.1.1.3-KZ1jqNx8uhlHjmuPPj6V1Y
+                      transformers-0.5.2.0@transformers-0.5.2.0
+                      unordered-containers-0.2.7.2@unordered-containers-0.2.7.2-8AmrySQXjRGF6VciYs51fM
+                      uri-bytestring-0.2.2.1@uri-bytestring-0.2.2.1-KLPVXCuTpVa3C6XITMoImT
+                      utf8-string-1.0.1.1@utf8-string-1.0.1.1-1DpjxLeTvGg7ttZZojxJR5
+                      uuid-types-1.0.3@uuid-types-1.0.3-7DISMfTGMIwFRGIC3QM3tK
+                      vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG
+orphans: attoparsec-0.13.1.0@attoparsec-0.13.1.0-HCAgpBrKCLJ5li8FbfXxE1:Data.Attoparsec.ByteString.Char8
+         attoparsec-0.13.1.0@attoparsec-0.13.1.0-HCAgpBrKCLJ5li8FbfXxE1:Data.Attoparsec.Text.Internal
+         base-4.9.1.0:GHC.Base base-4.9.1.0:GHC.Float
+         binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
+         bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
+         hashable-1.2.5.0@hashable-1.2.5.0-F4MWeNuv2sjJRqBd2T5ul4:Data.Hashable.Generic
+         network-2.6.3.1@network-2.6.3.1-ABFtZSq90Z9BfMXNiqgBoe:Network.Socket
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Lazy
+         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Show
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Calendar.Gregorian
+         time-1.6.0.1@time-1.6.0.1:Data.Time.Format.Parse
+         time-1.6.0.1@time-1.6.0.1:Data.Time.LocalTime.LocalTime
+         transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
+         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Fusion.Bundle
+         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Unboxed
+family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-HCAgpBrKCLJ5li8FbfXxE1:Data.Attoparsec.Internal.Types
+                         base-4.9.1.0:Control.Applicative base-4.9.1.0:Data.Complex
+                         base-4.9.1.0:Data.Either base-4.9.1.0:Data.Functor.Compose
+                         base-4.9.1.0:Data.Functor.Const base-4.9.1.0:Data.Functor.Identity
+                         base-4.9.1.0:Data.Functor.Product base-4.9.1.0:Data.Functor.Sum
+                         base-4.9.1.0:Data.List.NonEmpty base-4.9.1.0:Data.Monoid
+                         base-4.9.1.0:Data.Semigroup base-4.9.1.0:Data.Type.Equality
+                         base-4.9.1.0:Data.Version base-4.9.1.0:Data.Void
+                         base-4.9.1.0:GHC.Exts base-4.9.1.0:GHC.Generics
+                         base-4.9.1.0:GHC.IO.Exception base-4.9.1.0:GHC.TypeLits
+                         containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Sequence
+                         containers-0.5.7.1@containers-0.5.7.1:Data.Set.Base
+                         dlist-0.8.0.2@dlist-0.8.0.2-6Wnps4GD7EFnRucVzXIFD:Data.DList
+                         ghc-boot-th-8.0.2@ghc-boot-th-8.0.2:GHC.LanguageExtensions.Type
+                         http-api-data-0.3.5@http-api-data-0.3.5-3AuNmJIQrFpFAo17EGCjDT:Web.Internal.FormUrlEncoded
+                         network-uri-2.6.1.0@network-uri-2.6.1.0-EwGrJ9bdUqR1E7dAIJ4cwF:Network.URI
+                         primitive-0.6.1.0@primitive-0.6.1.0-6AbSTw9JXz141LE5p6LGH:Control.Monad.Primitive
+                         servant-0.9.1.1@servant-0.9.1.1-7RhVBUo3ZEV9ZgZjltmw69:Servant.API.ContentTypes
+                         tagged-0.8.5@tagged-0.8.5-1mTloBSoUxv8dqUr8XBGBt:Data.Tagged
+                         template-haskell-2.11.1.0:Language.Haskell.TH.Syntax
+                         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text
+                         text-1.2.2.1@text-1.2.2.1-Ji7hMs2U4BkBwavd4taEVR:Data.Text.Lazy
+                         unordered-containers-0.2.7.2@unordered-containers-0.2.7.2-8AmrySQXjRGF6VciYs51fM:Data.HashMap.Base
+                         unordered-containers-0.2.7.2@unordered-containers-0.2.7.2-8AmrySQXjRGF6VciYs51fM:Data.HashSet
+                         uri-bytestring-0.2.2.1@uri-bytestring-0.2.2.1-KLPVXCuTpVa3C6XITMoImT:URI.ByteString.Types
+                         uuid-types-1.0.3@uuid-types-1.0.3-7DISMfTGMIwFRGIC3QM3tK:Data.UUID.Types.Internal
+                         uuid-types-1.0.3@uuid-types-1.0.3-7DISMfTGMIwFRGIC3QM3tK:Data.UUID.Types.Internal.Builder
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Primitive
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Storable
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Unboxed
+                         vector-0.11.0.0@vector-0.11.0.0-LMwQhhnXj8U3T5Bm1JFxG:Data.Vector.Unboxed.Base
+import  -/  HTTP-4000.3.5@HTTP-4000.3.5-J3FRIDA0OGiJpLXZa2UC8z:Network.HTTP 269e6729f26417390a92344eb1bc1ac4
+import  -/  HTTP-4000.3.5@HTTP-4000.3.5-J3FRIDA0OGiJpLXZa2UC8z:Network.HTTP.Base 5f9985bd190751e58a44ee9cc42e97e5
+import  -/  HTTP-4000.3.5@HTTP-4000.3.5-J3FRIDA0OGiJpLXZa2UC8z:Network.HTTP.Headers e6dc9348ef682b42a58b6f551ed02b64
+import  -/  base-4.9.1.0:Data.List 07ae2acca6538aa0800bd0a993ac6ac1
+import  -/  base-4.9.1.0:Data.Proxy d7f87a37cf7ec5ca87c59c8d2859031f
+import  -/  base-4.9.1.0:Debug.Trace a9edf3aec504f4423d8ba829ab373a25
+import  -/  base-4.9.1.0:GHC.Base c4231c43c07e46080a26bf94094c7aa1
+import  -/  base-4.9.1.0:GHC.Err 3bba35a16538d33d424682ce66876cdd
+import  -/  base-4.9.1.0:GHC.Generics 1dbec2bc7dd1c5bd8c89ed857eaed19b
+import  -/  base-4.9.1.0:GHC.Show a027f5ac24879eaba752f44aa90fe511
+import  -/  base-4.9.1.0:Prelude 22dd289b8469a8fa8dc81cab7b237771
+import  -/  base-4.9.1.0:System.IO c9de64c5f5407c4cf1c52500c4d15200
+import  -/  binary-0.8.3.0@binary-0.8.3.0:Data.Binary 68bf10cd9cced43ad785ce79fc9157c3
+import  -/  binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Class 74e43ac8c719b63390fb5224488bc2fa
+import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Lazy 2ede44f11439db2ef9a1556c24c824b6
+import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Lazy.Char8 62e1cccc3ad0ea8a5aca41a4948378cb
+import  -/  bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Lazy.Internal 6973f3fb6c1d29434d6f14b94e505111
+import  -/  containers-0.5.7.1@containers-0.5.7.1:Data.Map 0fd5c8559af8bc4b6f38b9cf9ba5a467
+import  -/  ghc-prim-0.5.0.0:GHC.Classes 0bdf3d057a415ec1b84a7b1994efbe47
+import  -/  ghc-prim-0.5.0.0:GHC.Types 89f8de4f08018c9177c98d979eae0e45
+import  -/  http-media-0.6.4@http-media-0.6.4-IiIO5ijbeES53rTISAjOqx:Network.HTTP.Media 9b6475ec3233ed2a3b22b084adc802e5
+import  -/  network-uri-2.6.1.0@network-uri-2.6.1.0-EwGrJ9bdUqR1E7dAIJ4cwF:Network.URI 93209ffa1ef6049240d836128997585a
+import  -/  servant-0.9.1.1@servant-0.9.1.1-7RhVBUo3ZEV9ZgZjltmw69:Servant.API.ContentTypes a6ce28a4ff47244bb93da5d916fd54cf
+0e5d7593980e98426d44bf75a8bc2149
+  $fBinarySlaveRequest :: Data.Binary.Class.Binary Main.SlaveRequest
+  DFunId
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Main.SlaveRequest
+                  Main.$fBinarySlaveRequest_$cput
+                  Main.$fBinarySlaveRequest_$cget
+                  Main.$fBinarySlaveRequest_$cputList -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fBinarySlaveRequest1 ::
+    Data.ByteString.Internal.ByteString
+    -> Data.Binary.Get.Internal.Success Main.SlaveRequest r
+    -> Data.Binary.Get.Internal.Decoder r
+  {- Arity: 2, Strictness: <S(SLSS),1*U(U,U,U,U)><L,C(C1(U))>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ @ r
+                   (w :: Data.ByteString.Internal.ByteString)
+                   (w1 :: Data.Binary.Get.Internal.Success Main.SlaveRequest r) ->
+                 case w of ww { Data.ByteString.Internal.PS ww1 ww2 ww3 ww4 ->
+                 Main.$w$cget @ r ww1 ww2 ww3 ww4 w1 }) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fBinarySlaveRequest2 ::
+    Main.SlaveRequest -> Data.Binary.Put.PairS ()
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(1*U(U))>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (eta :: Main.SlaveRequest) ->
+                 case Data.Binary.Class.$w$cput1
+                        (case eta of wild { Main.SlaveRequest g1 ->
+                         g1 }) of ww { (#,#) ww1 ww2 ->
+                 Data.Binary.Put.PairS @ () ww1 ww2 }) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fBinarySlaveRequest_$cget ::
+    Data.Binary.Get.Internal.Get Main.SlaveRequest
+  {- Arity: 2, Strictness: <S(SLSS),1*U(U,U,U,U)><L,C(C1(U))>,
+     Unfolding: InlineRule (0, True, True)
+                Main.$fBinarySlaveRequest1
+                  `cast`
+                (Sym (Data.Binary.Get.Internal.N:Get[0] <Main.SlaveRequest>_R)) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fBinarySlaveRequest_$cput ::
+    Main.SlaveRequest -> Data.Binary.Put.Put
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,1*U(1*U(U))>m,
+     Unfolding: InlineRule (0, True, True)
+                Main.$fBinarySlaveRequest2
+                  `cast`
+                (<Main.SlaveRequest>_R
+                 ->_R Sym (Data.Binary.Put.N:PutM[0]) <()>_N) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fBinarySlaveRequest_$cputList ::
+    [Main.SlaveRequest] -> Data.Binary.Put.Put
+  {- Arity: 1 -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fGenericSlaveRequest :: GHC.Generics.Generic Main.SlaveRequest
+  DFunId
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Main.SlaveRequest
+                  Main.$fGenericSlaveRequest_$cfrom
+                  Main.$fGenericSlaveRequest_$cto -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fGenericSlaveRequest1 ::
+    Main.SlaveRequest
+    -> GHC.Generics.M1
+         GHC.Generics.C
+         ('GHC.Generics.MetaCons
+            "SlaveRequest" 'GHC.Generics.PrefixI 'GHC.Types.False)
+         (GHC.Generics.M1
+            GHC.Generics.S
+            ('GHC.Generics.MetaSel
+               'GHC.Base.Nothing
+               'GHC.Generics.NoSourceUnpackedness
+               'GHC.Generics.NoSourceStrictness
+               'GHC.Generics.DecidedLazy)
+            (GHC.Generics.K1 GHC.Generics.R GHC.Types.Int))
+         x
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(1*U(U))>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ x (x1 :: Main.SlaveRequest) ->
+                 case x1 of wild { Main.SlaveRequest g1 ->
+                 g1
+                   `cast`
+                 (Trans
+                      (Sym (GHC.Generics.N:K1[0]
+                                <GHC.Generics.R>_P <GHC.Types.Int>_R <x>_P))
+                      (Trans
+                           (Sym (GHC.Generics.N:M1[0]
+                                     <GHC.Generics.S>_P
+                                     <'GHC.Generics.MetaSel
+                                        'GHC.Base.Nothing
+                                        'GHC.Generics.NoSourceUnpackedness
+                                        'GHC.Generics.NoSourceStrictness
+                                        'GHC.Generics.DecidedLazy>_P
+                                     <GHC.Generics.K1 GHC.Generics.R GHC.Types.Int>_R))
+                           (Sym (GHC.Generics.N:M1[0]
+                                     <GHC.Generics.C>_P
+                                     <'GHC.Generics.MetaCons
+                                        "SlaveRequest" 'GHC.Generics.PrefixI 'GHC.Types.False>_P
+                                     <GHC.Generics.M1
+                                        GHC.Generics.S
+                                        ('GHC.Generics.MetaSel
+                                           'GHC.Base.Nothing
+                                           'GHC.Generics.NoSourceUnpackedness
+                                           'GHC.Generics.NoSourceStrictness
+                                           'GHC.Generics.DecidedLazy)
+                                        (GHC.Generics.K1
+                                           GHC.Generics.R GHC.Types.Int)>_R)) <x>_N)) }) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fGenericSlaveRequest_$cfrom ::
+    Main.SlaveRequest -> GHC.Generics.Rep Main.SlaveRequest x
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(S),1*U(1*U(U))>m,
+     Unfolding: InlineRule (0, True, True)
+                Main.$fGenericSlaveRequest1
+                  `cast`
+                (forall (x :: <GHC.Types.*>_N).
+                 <Main.SlaveRequest>_R
+                 ->_R Trans
+                          (Sym (GHC.Generics.N:M1[0]
+                                    <GHC.Generics.D>_P
+                                    <'GHC.Generics.MetaData
+                                       "SlaveRequest" "Main" "main" 'GHC.Types.False>_P
+                                    <GHC.Generics.M1
+                                       GHC.Generics.C
+                                       ('GHC.Generics.MetaCons
+                                          "SlaveRequest" 'GHC.Generics.PrefixI 'GHC.Types.False)
+                                       (GHC.Generics.M1
+                                          GHC.Generics.S
+                                          ('GHC.Generics.MetaSel
+                                             'GHC.Base.Nothing
+                                             'GHC.Generics.NoSourceUnpackedness
+                                             'GHC.Generics.NoSourceStrictness
+                                             'GHC.Generics.DecidedLazy)
+                                          (GHC.Generics.K1 GHC.Generics.R GHC.Types.Int))>_R))
+                          (Sub (Sym (Main.Rep_SlaveRequest[0]))) <x>_N) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fGenericSlaveRequest_$cto ::
+    GHC.Generics.Rep Main.SlaveRequest x -> Main.SlaveRequest
+  {- Arity: 1, HasNoCafRefs, Strictness: <L,U>m,
+     Unfolding: InlineRule (1, True, True)
+                (\ @ x (ds :: GHC.Generics.Rep Main.SlaveRequest x) ->
+                 Main.SlaveRequest
+                   ds
+                     `cast`
+                   (Trans
+                        (Trans
+                             (Sub (Main.Rep_SlaveRequest[0]))
+                             (Trans
+                                  (GHC.Generics.N:M1[0]
+                                       <GHC.Generics.D>_P
+                                       <'GHC.Generics.MetaData
+                                          "SlaveRequest" "Main" "main" 'GHC.Types.False>_P
+                                       <GHC.Generics.M1
+                                          GHC.Generics.C
+                                          ('GHC.Generics.MetaCons
+                                             "SlaveRequest" 'GHC.Generics.PrefixI 'GHC.Types.False)
+                                          (GHC.Generics.M1
+                                             GHC.Generics.S
+                                             ('GHC.Generics.MetaSel
+                                                'GHC.Base.Nothing
+                                                'GHC.Generics.NoSourceUnpackedness
+                                                'GHC.Generics.NoSourceStrictness
+                                                'GHC.Generics.DecidedLazy)
+                                             (GHC.Generics.K1 GHC.Generics.R GHC.Types.Int))>_R)
+                                  (Trans
+                                       (GHC.Generics.N:M1[0]
+                                            <GHC.Generics.C>_P
+                                            <'GHC.Generics.MetaCons
+                                               "SlaveRequest"
+                                               'GHC.Generics.PrefixI
+                                               'GHC.Types.False>_P
+                                            <GHC.Generics.M1
+                                               GHC.Generics.S
+                                               ('GHC.Generics.MetaSel
+                                                  'GHC.Base.Nothing
+                                                  'GHC.Generics.NoSourceUnpackedness
+                                                  'GHC.Generics.NoSourceStrictness
+                                                  'GHC.Generics.DecidedLazy)
+                                               (GHC.Generics.K1 GHC.Generics.R GHC.Types.Int)>_R)
+                                       (GHC.Generics.N:M1[0]
+                                            <GHC.Generics.S>_P
+                                            <'GHC.Generics.MetaSel
+                                               'GHC.Base.Nothing
+                                               'GHC.Generics.NoSourceUnpackedness
+                                               'GHC.Generics.NoSourceStrictness
+                                               'GHC.Generics.DecidedLazy>_P
+                                            <GHC.Generics.K1
+                                               GHC.Generics.R GHC.Types.Int>_R))) <x>_N)
+                        (GHC.Generics.N:K1[0]
+                             <GHC.Generics.R>_P <GHC.Types.Int>_R <x>_P))) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fShowSlaveRequest :: GHC.Show.Show Main.SlaveRequest
+  DFunId
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Main.SlaveRequest
+                  Main.$fShowSlaveRequest_$cshowsPrec
+                  Main.$fShowSlaveRequest_$cshow
+                  Main.$fShowSlaveRequest_$cshowList -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fShowSlaveRequest1 :: Main.SlaveRequest -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (\ (w :: Main.SlaveRequest) (w1 :: GHC.Base.String) ->
+                 case w of ww { Main.SlaveRequest ww1 ->
+                 Main.$w$cshowsPrec 0# ww1 w1 }) -}
+5a71f24f86503b002077497d3f944245
+  $fShowSlaveRequest2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "SlaveRequest "#) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fShowSlaveRequest_$cshow :: Main.SlaveRequest -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U(U))>, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Main.SlaveRequest) ->
+                 case w of ww { Main.SlaveRequest ww1 -> Main.$w$cshow ww1 }) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fShowSlaveRequest_$cshowList ::
+    [Main.SlaveRequest] -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__
+                   @ Main.SlaveRequest
+                   Main.$fShowSlaveRequest1) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $fShowSlaveRequest_$cshowsPrec ::
+    GHC.Types.Int -> Main.SlaveRequest -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <S(S),1*U(U)><S,1*U(1*U(U))><L,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: GHC.Types.Int)
+                   (w1 :: Main.SlaveRequest)
+                   (w2 :: GHC.Base.String) ->
+                 case w of ww { GHC.Types.I# ww1 ->
+                 case w1 of ww2 { Main.SlaveRequest ww3 ->
+                 Main.$w$cshowsPrec ww1 ww3 w2 } }) -}
+95705a93ea8933daa062e384ed4bf16e
+  $tc'SlaveRequest :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   12009453887339805427##
+                   1056349274940885685##
+                   Main.$trModule
+                   Main.$tc'SlaveRequest1) -}
+c8ce4d4ec33363a7c8cf24a01f70dc0d
+  $tc'SlaveRequest1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'SlaveRequest"#) -}
+283ab42ba4d4c43f226f23f762af5200
+  $tcSlaveRequest :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   3995606013406723336##
+                   9108325396350898195##
+                   Main.$trModule
+                   Main.$tcSlaveRequest1) -}
+4e5b3a97e487479d10f51bd7a96f6521
+  $tcSlaveRequest1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "SlaveRequest"#) -}
+d6831ef04cb9301b090dfae6f7bb7ec7
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module Main.$trModule2 Main.$trModule1) -}
+847d9fc3b8e6f0b424199f36b4999bb2
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "Main"#) -}
+24ef6042833e75ffd7aa98b83ecca98d
+  $trModule2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "main"#) -}
+0e5d7593980e98426d44bf75a8bc2149
+  $w$cget ::
+    GHC.Prim.Addr#
+    -> GHC.ForeignPtr.ForeignPtrContents
+    -> GHC.Prim.Int#
+    -> GHC.Prim.Int#
+    -> Data.Binary.Get.Internal.Success Main.SlaveRequest r
+    -> Data.Binary.Get.Internal.Decoder r
+  {- Arity: 5, Strictness: <S,U><L,U><S,U><S,U><L,C(C1(U))>,
+     Inline: [0],
+     Unfolding: (\ @ r
+                   (ww :: GHC.Prim.Addr#)
+                   (ww1 :: GHC.ForeignPtr.ForeignPtrContents)
+                   (ww2 :: GHC.Prim.Int#)
+                   (ww3 :: GHC.Prim.Int#)
+                   (w :: Data.Binary.Get.Internal.Success Main.SlaveRequest r) ->
+                 Data.Binary.Class.$w$cget9
+                   @ r
+                   ww
+                   ww1
+                   ww2
+                   ww3
+                   (\ (i' :: Data.ByteString.Internal.ByteString)
+                      (a1 :: GHC.Types.Int)[OneShot] ->
+                    w i' (Main.SlaveRequest a1))) -}
+4f4bd88ce8f7f1d35c0e25ad637883ac
+  $w$cshow :: GHC.Types.Int -> GHC.Base.String
+  {- Arity: 1, Strictness: <L,1*U(U)>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Types.Int) ->
+                 GHC.Base.++
+                   @ GHC.Types.Char
+                   Main.$fShowSlaveRequest2
+                   (case ww of ww2 { GHC.Types.I# ww3 ->
+                    case GHC.Show.$wshowSignedInt
+                           11#
+                           ww3
+                           (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                    GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) -}
+b5c68573aff396fd97927cb5e3d12cfb
+  $w$cshowsPrec ::
+    GHC.Prim.Int#
+    -> GHC.Types.Int -> GHC.Base.String -> GHC.Base.String
+  {- Arity: 3, Strictness: <S,U><L,1*U(U)><L,U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Prim.Int#)
+                   (ww1 :: GHC.Types.Int)
+                   (w :: GHC.Base.String) ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.>=# ww 11#) of wild {
+                   GHC.Types.False
+                   -> GHC.Base.++
+                        @ GHC.Types.Char
+                        Main.$fShowSlaveRequest2
+                        (case ww1 of ww2 { GHC.Types.I# ww3 ->
+                         case GHC.Show.$wshowSignedInt 11# ww3 w of ww4 { (#,#) ww5 ww6 ->
+                         GHC.Types.: @ GHC.Types.Char ww5 ww6 } })
+                   GHC.Types.True
+                   -> GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.shows7
+                        (GHC.Base.++
+                           @ GHC.Types.Char
+                           Main.$fShowSlaveRequest2
+                           (case ww1 of ww2 { GHC.Types.I# ww3 ->
+                            case GHC.Show.$wshowSignedInt
+                                   11#
+                                   ww3
+                                   (GHC.Types.:
+                                      @ GHC.Types.Char
+                                      GHC.Show.shows4
+                                      w) of ww4 { (#,#) ww5 ww6 ->
+                            GHC.Types.: @ GHC.Types.Char ww5 ww6 } })) }) -}
+a32a4570988e5e31b1bcf5639f01ad97
+  $wgo1 ::
+    GHC.Prim.Int#
+    -> Data.ByteString.Lazy.Internal.ByteString -> GHC.Prim.Int#
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U>, Inline: [0] -}
+4c110cf245d84a10c4d02ec39a369922
+  $wsetRequestBody2 ::
+    Network.HTTP.Base.Request Data.ByteString.Lazy.Internal.ByteString
+    -> GHC.Base.String
+    -> Data.ByteString.Lazy.Internal.ByteString
+    -> (# Network.URI.URI, Network.HTTP.Base.RequestMethod,
+          [Network.HTTP.Headers.Header],
+          Data.ByteString.Lazy.Internal.ByteString #)
+  {- Arity: 3, HasNoCafRefs, Strictness: <L,U><L,U><L,U>,
+     Inline: [0],
+     Unfolding: (\ (w :: Network.HTTP.Base.Request
+                           Data.ByteString.Lazy.Internal.ByteString)
+                   (ww :: GHC.Base.String)
+                   (ww1 :: Data.ByteString.Lazy.Internal.ByteString) ->
+                 case Network.HTTP.Headers.replaceHeader
+                        @ (Network.HTTP.Base.Request
+                             Data.ByteString.Lazy.Internal.ByteString)
+                        (Network.HTTP.Base.$fHasHeadersRequest
+                           @ Data.ByteString.Lazy.Internal.ByteString)
+                        Network.HTTP.Headers.HdrContentType
+                        ww
+                        (Network.HTTP.Headers.replaceHeader
+                           @ (Network.HTTP.Base.Request
+                                Data.ByteString.Lazy.Internal.ByteString)
+                           (Network.HTTP.Base.$fHasHeadersRequest
+                              @ Data.ByteString.Lazy.Internal.ByteString)
+                           Network.HTTP.Headers.HdrContentLength
+                           (case Main.$wgo1 0# ww1 of ww2 { DEFAULT ->
+                            case GHC.Show.$wshowSignedInt
+                                   0#
+                                   ww2
+                                   (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                            GHC.Types.: @ GHC.Types.Char ww5 ww6 } })
+                           w) of wild { Network.HTTP.Base.Request ds ds1 ds2 ds3 ->
+                 (# ds, ds1, ds2, ww1 #) }) -}
+0e5d7593980e98426d44bf75a8bc2149
+  axiom Rep_SlaveRequest::
+      GHC.Generics.Rep Main.SlaveRequest
+        = GHC.Generics.D1
+            ('GHC.Generics.MetaData
+               "SlaveRequest" "Main" "main" 'GHC.Types.False)
+            (GHC.Generics.C1
+               ('GHC.Generics.MetaCons
+                  "SlaveRequest" 'GHC.Generics.PrefixI 'GHC.Types.False)
+               (GHC.Generics.S1
+                  ('GHC.Generics.MetaSel
+                     'GHC.Base.Nothing
+                     'GHC.Generics.NoSourceUnpackedness
+                     'GHC.Generics.NoSourceStrictness
+                     'GHC.Generics.DecidedLazy)
+                  (GHC.Generics.Rec0 GHC.Types.Int)))
+0e5d7593980e98426d44bf75a8bc2149
+  data SlaveRequest = SlaveRequest GHC.Types.Int
+6d0322c471c3e99b4dfcd58180df51b5
+  main :: GHC.Types.IO ()
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: InlineRule (0, True, True)
+                Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
+d2a067ca6b8c8c0548aa952ed005f45b
+  main1 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (s :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.IO.Handle.Text.hPutStr2
+                        GHC.IO.Handle.FD.stdout
+                        Main.main16
+                        GHC.Types.True
+                        s of ds1 { (#,#) ipv ipv1 ->
+                 case Network.HTTP.simpleHTTP1
+                        @ Data.ByteString.Lazy.Internal.ByteString
+                        Network.TCP.$fHStreamByteString
+                        Main.main_request
+                        ipv of ds2 { (#,#) ipv2 ipv3 ->
+                 case GHC.IO.Handle.Text.hPutStr2
+                        GHC.IO.Handle.FD.stdout
+                        (case ipv3 of wild {
+                           Data.Either.Left b1
+                           -> GHC.Base.++
+                                @ GHC.Types.Char
+                                Data.Either.$fShowEither3
+                                (Network.Stream.$fShowConnError_$cshowsPrec
+                                   Data.Either.$fShowEither4
+                                   b1
+                                   (GHC.Types.[] @ GHC.Types.Char))
+                           Data.Either.Right b1
+                           -> GHC.Base.++
+                                @ GHC.Types.Char
+                                Data.Either.$fShowEither2
+                                (case b1 of ww { Network.HTTP.Base.Response ww1 ww2 ww3 ww4 ->
+                                 case ww1 of ww5 { (,,) ww6 ww7 ww8 ->
+                                 Network.HTTP.Base.$w$cshow1
+                                   @ Data.ByteString.Lazy.Internal.ByteString
+                                   ww6
+                                   ww7
+                                   ww8
+                                   ww2
+                                   ww3 } }) })
+                        GHC.Types.True
+                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 case ipv3 of wild {
+                   Data.Either.Left err
+                   -> case GHC.Prim.raiseIO#
+                             @ GHC.Exception.SomeException
+                             @ Data.ByteString.Lazy.Internal.ByteString
+                             (GHC.IO.Exception.$fExceptionIOException_$ctoException
+                                (GHC.IO.Exception.IOError
+                                   (GHC.Base.Nothing @ GHC.IO.Handle.Types.Handle)
+                                   GHC.IO.Exception.UserError
+                                   (GHC.Types.[] @ GHC.Types.Char)
+                                   (Network.Stream.$fShowConnError_$cshow err)
+                                   (GHC.Base.Nothing @ Foreign.C.Types.CInt)
+                                   (GHC.Base.Nothing @ GHC.IO.FilePath)))
+                             ipv4
+                      ret_ty (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+                      of {}
+                   Data.Either.Right r
+                   -> case GHC.IO.Handle.Text.hPutStr2
+                             GHC.IO.Handle.FD.stdout
+                             (GHC.Types.:
+                                @ GHC.Types.Char
+                                GHC.Show.shows6
+                                (case r of wild1 { Network.HTTP.Base.Response ds4 ds5 ds6 ds7 ->
+                                 GHC.Show.showLitString
+                                   (Data.ByteString.Lazy.Internal.unpackChars ds7)
+                                   Main.main2 }))
+                             GHC.Types.True
+                             ipv4 of ds4 { (#,#) ipv6 ipv7 ->
+                      (# ipv6, GHC.Tuple.() #) } } } } }) -}
+7adae54ac82095e0ae84b6ba03c11daf
+  main10 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 18#) -}
+03def1936814fd3e85a8a8ac5ddb81c4
+  main11 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 58#) -}
+657596701ea6a7a1cd8187b4128f0a8e
+  main12 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Main.hs"#) -}
+55fe52734f7727977a174029ca96ba70
+  main13 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Main"#) -}
+94a9f54e772782e8b372763247a58eb7
+  main14 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "main"#) -}
+5bdb83c6320cc5b0c6e6e0a34ae19449
+  main15 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "error"#) -}
+4529a60e4102930ed0af91f52d50b513
+  main16 :: GHC.Base.String
+  {- Unfolding: (case Main.main_request of ww { Network.HTTP.Base.Request ww1 ww2 ww3 ww4 ->
+                 Network.HTTP.Base.$w$cshow
+                   @ Data.ByteString.Lazy.Internal.ByteString
+                   ww1
+                   ww2
+                   ww3 }) -}
+e8ea5f78defc8ef633a7d0d071a30c24
+  main17 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
+  {- Arity: 1,
+     Unfolding: (GHC.TopHandler.runMainIO1
+                   @ ()
+                   Main.main1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R))) -}
+3531ea5ecb5af906380656154dc1ca07
+  main2 :: [GHC.Types.Char]
+  {- HasNoCafRefs,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   GHC.Show.shows6
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+48fde5fd1c620e11625527a2b0c7072b
+  main3 :: Data.ByteString.Lazy.Internal.ByteString
+  {- Unfolding: (Data.ByteString.Builder.toLazyByteString
+                   Main.main4) -}
+6aadc8569580afaf5c35bf97f4fccec4
+  main4 :: Data.ByteString.Builder.Internal.Builder
+  {- Unfolding: (case Data.Binary.Class.$w$cput1
+                        Main.main5 of ww { (#,#) ww1 ww2 ->
+                 ww2 }) -}
+33314c413981942a6739eafa1a8e1db6
+  main5 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 12#) -}
+6f64ae60ad79c07789768814701c4e16
+  main6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   "postRequestWithBody: Not a valid URL - "#
+                   Main.main_url) -}
+f3650f4e15556f34cd403071cc305b1e
+  main7 :: GHC.Stack.Types.CallStack
+  {- Unfolding: (GHC.Stack.Types.PushCallStack
+                   Main.main15
+                   Main.main8
+                   GHC.Stack.Types.EmptyCallStack) -}
+593713b8d2b6f505845e164b202347a7
+  main8 :: GHC.Stack.Types.SrcLoc
+  {- Unfolding: (GHC.Stack.Types.SrcLoc
+                   Main.main14
+                   Main.main13
+                   Main.main12
+                   Main.main11
+                   Main.main10
+                   Main.main11
+                   Main.main9) -}
+dae4b8049e0a14db71d5798137d8ce20
+  main9 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 74#) -}
+5a5c9bcd5c2338af2288fb7e6fd110ef
+  main_request ::
+    Network.HTTP.Base.Request Data.ByteString.Lazy.Internal.ByteString
+  {- Unfolding: (case (Network.URI.isAbsoluteURI2
+                         @ Network.URI.URI
+                         Network.URI.isURI1
+                           `cast`
+                         (Sym (Text.Parsec.Prim.N:ParsecT[0]
+                                   <[GHC.Types.Char]>_R
+                                   <()>_R
+                                   <Data.Functor.Identity.Identity>_R
+                                   <Network.URI.URI>_R))
+                         (GHC.Types.[] @ GHC.Types.Char)
+                         Main.main_url)
+                        `cast`
+                      (Data.Functor.Identity.N:Identity[0]
+                           <Data.Either.Either
+                              Text.Parsec.Error.ParseError Network.URI.URI>_R) of wild {
+                   Data.Either.Left ds
+                   -> GHC.Err.error
+                        @ 'GHC.Types.PtrRepLifted
+                        @ (Network.HTTP.Base.Request
+                             Data.ByteString.Lazy.Internal.ByteString)
+                        Main.main7
+                          `cast`
+                        (Sym (GHC.Classes.N:IP[0]
+                                  <"callStack">_N <GHC.Stack.Types.CallStack>_N))
+                        Main.main6
+                   Data.Either.Right u
+                   -> Debug.Trace.trace
+                        @ (Network.HTTP.Base.Request
+                             Data.ByteString.Lazy.Internal.ByteString)
+                        Main.main_typ
+                        (case Main.$wsetRequestBody2
+                                (Network.HTTP.Base.Request
+                                   @ Data.ByteString.Lazy.Internal.ByteString
+                                   u
+                                   Network.HTTP.Base.GET
+                                   Network.HTTP.Base.defaultGETRequest1
+                                   Data.ByteString.Lazy.Internal.Empty)
+                                Main.main_typ
+                                Main.main3 of ww { (#,,,#) ww1 ww2 ww3 ww4 ->
+                         Network.HTTP.Base.Request
+                           @ Data.ByteString.Lazy.Internal.ByteString
+                           ww1
+                           ww2
+                           ww3
+                           ww4 }) }) -}
+29614dce4f8624b53c02632917caf633
+  main_typ :: GHC.Base.String
+  {- Unfolding: (case Servant.API.ContentTypes.$fAcceptTYPEOctetStream1 of ww { Network.HTTP.Media.MediaType.Internal.MediaType ww1 ww2 ww3 ->
+                 case ww1 of ww4 { Data.CaseInsensitive.Internal.CI ww5 ww6 ->
+                 case ww5 of ww7 { Data.ByteString.Internal.PS ww8 ww9 ww10 ww11 ->
+                 case ww2 of ww12 { Data.CaseInsensitive.Internal.CI ww13 ww14 ->
+                 case ww13 of ww15 { Data.ByteString.Internal.PS ww16 ww17 ww18 ww19 ->
+                 Network.HTTP.Media.MediaType.Internal.$w$cshow
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww16
+                   ww17
+                   ww18
+                   ww19
+                   ww3 } } } } }) -}
+aeef3c97a735230cd17e68d06bdf25cb
+  main_url :: GHC.Base.String
+  {- Unfolding: (GHC.CString.unpackCString#
+                   "http://127.0.0.1:3000/bin"#) -}
+07ad40192352a99261147d3b3c8ed4f4
+  setRequestBody2 ::
+    Network.HTTP.Base.Request Data.ByteString.Lazy.Internal.ByteString
+    -> (GHC.Base.String, Data.ByteString.Lazy.Internal.ByteString)
+    -> Network.HTTP.Base.Request
+         Data.ByteString.Lazy.Internal.ByteString
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,U><S,1*U(U,U)>m,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Network.HTTP.Base.Request
+                           Data.ByteString.Lazy.Internal.ByteString)
+                   (w1 :: (GHC.Base.String,
+                           Data.ByteString.Lazy.Internal.ByteString)) ->
+                 case w1 of ww { (,) ww1 ww2 ->
+                 case Main.$wsetRequestBody2
+                        w
+                        ww1
+                        ww2 of ww3 { (#,,,#) ww4 ww5 ww6 ww7 ->
+                 Network.HTTP.Base.Request
+                   @ Data.ByteString.Lazy.Internal.ByteString
+                   ww4
+                   ww5
+                   ww6
+                   ww7 } }) -}
+instance Data.Binary.Class.Binary [Main.SlaveRequest]
+  = Main.$fBinarySlaveRequest
+instance GHC.Generics.Generic [Main.SlaveRequest]
+  = Main.$fGenericSlaveRequest
+instance GHC.Show.Show [Main.SlaveRequest]
+  = Main.$fShowSlaveRequest
+family instance GHC.Generics.Rep [Main.SlaveRequest]
+  = Main.Rep_SlaveRequest
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: none
+require own pkg trusted: False
+
