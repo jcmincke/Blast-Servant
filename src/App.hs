@@ -17,6 +17,7 @@ import            Data.String.Conversions
 --import Data.ByteString as BS
 import Data.ByteString.Lazy as BS
 
+import qualified  Data.Map as M
 import qualified  Data.List as L
 --import            Control.DeepSeq
 import            Data.Binary
@@ -42,60 +43,62 @@ import            Control.Monad.Logger
 
 
 
+--data SlaveMap = MkSlaveMap {
+--
+--  }
 
---data SlaveRequest = SlaveRequest Int
---  LsReqExecute RemoteClosureIndex
---  |LsReqCache Int (Data BS.ByteString)
---  |LsReqUncache Int
---  |LsReqFetch Int
---  |LsReqReset BS.ByteString
---  |LsReqBatch Int [SlaveRequest]
---  deriving (Generic, Show)
+type SlaveMap a b = M.Map Int (Maybe (SlaveContext (LoggingT IO) a b))
 
+server :: S.Serialize a =>
+  (SlaveContext (LoggingT IO) a b)
+  -> (forall c . LoggingT IO c -> IO c)
+  -> MVar (SlaveMap a b) -> Server Api
+server slaveContext0 slaveLogger slaveMapMVar =
 
---instance Binary SlaveRequest
-
-
-server :: S.Serialize a => (forall c . LoggingT IO c -> IO c) -> MVar (SlaveContext (LoggingT IO) a b) -> Server Api
-server slaveLogger slaveContextMVar =
-
-  processSlaveCommand slaveLogger slaveContextMVar
-  :<|> getHello
+  processSlaveCommand slaveContext0 slaveLogger slaveMapMVar
+  :<|> getPing
   :<|> getKill
 
 
---  getPersonsH :<|> getPersonH
---    :<|> createPersonH
---    :<|> deletePersonH
---    :<|> updatePersonH
---    :<|> serveDirectory "static"
---  where
---    getBin  = liftIO $ getPersons pool
---    getPersonH pid = liftIO $ getPerson pool pid
---    createPersonH fn n = liftIO $ createPerson pool fn n
---    deletePersonH pid = liftIO $ deletePerson pool pid
---    updatePersonH pid fn n = liftIO $ updatePerson pool pid fn n
 
-processSlaveCommand slaveLogger slaveContextMVar bs = do
-  liftIO $ modifyMVar slaveContextMVar action
+processSlaveCommand slaveContext0 slaveLogger slaveMapMVar slaveId bs = do
+  slaveContextM <- liftIO $ getContext slaveMapMVar
+  case slaveContextM of
+    Just slaveContext -> do
+      let (slaveRequest::SlaveRequest) = decode bs
+      (resp, slaveContext') <- liftIO $ slaveLogger $ runCommand slaveRequest slaveContext
+      let respBs = encode resp
+      isOk <- liftIO $ setContext slaveContext' slaveMapMVar
+      if isOk
+        then return respBs
+        else do let errBs = encode $ LsRespError ("Non sequential slave request for slave (slave does not exist):" ++ show slaveId)
+                return errBs
+
+    Nothing -> do let errBs = encode $ LsRespError ("Non sequential slave request for slave (slave busy):" ++ show slaveId)
+                  return errBs
   where
-  action slaveContext = do
-    let (slaveRequest::SlaveRequest) = decode bs
-    (resp, slaveContext') <- slaveLogger $ runCommand slaveRequest slaveContext
-    let respBs = encode resp
-    return (slaveContext', respBs)
+  getContext mvar = modifyMVar mvar $ \slaveMap ->
+    case M.lookup slaveId slaveMap of
+      Just (Just slaveContext) -> return (M.insert slaveId Nothing slaveMap, Just slaveContext)
+      Just Nothing -> do
+        return (M.insert slaveId Nothing slaveMap, Just slaveContext0)
+      Nothing -> return (slaveMap, Nothing)
 
---modifyMVar :: MVar a -> (a -> IO (a, b)) -> IO b
----- | Runs the given command against the specified state of a slave.
---runCommand :: forall a b m. (S.Serialize a, MonadLoggerIO m)
---  => SlaveRequest                          -- ^ Command.
---  -> SlaveContext m a b                    -- ^ Slave context
---  -> m (SlaveResponse, SlaveContext m a b) -- ^ Returns the response from the slave and the new slave context.
+  setContext slaveContext mvar = modifyMVar mvar $ \slaveMap ->
+    case M.lookup slaveId slaveMap of
+      Just (Just slaveContext) -> return (slaveMap, False)
+      Just Nothing -> return (M.insert slaveId (Just slaveContext) slaveMap, True)
+      Nothing -> return (slaveMap, False)
+
+--  action slaveContext = do
+--    let (slaveRequest::SlaveRequest) = decode bs
+--    (resp, slaveContext') <- slaveLogger $ runCommand slaveRequest slaveContext
+--    let respBs = encode resp
+--    return (slaveContext', respBs)
 
 
-getHello = do
-  liftIO $ print "got it"
-  return "hello"
+getPing = do
+  return "Pinged"
 
 getKill = do
   liftIO $ exitImmediately (ExitFailure 42)
@@ -106,13 +109,21 @@ getKill = do
 
 mkApp :: S.Serialize a => (forall c. LoggingT IO c -> IO c) -> B.Config -> B.JobDesc a b -> IO Application
 mkApp slaveLogger config jobDesc = do
-  let slaveContext = makeSlaveContext config 0 jobDesc  -- slave id has no use
-  mvar <- newMVar slaveContext
-  return $ serve api $ server slaveLogger mvar
+  let slaveContext0 = makeSlaveContext config 0 jobDesc  -- slave id has no use
+  mvar <- newMVar M.empty
+  return $ serve api $ server slaveContext0 slaveLogger mvar
 
 runSlave :: (S.Serialize a) => (forall c. LoggingT IO c -> IO c) -> Int -> B.Config -> B.JobDesc a b -> IO ()
 runSlave slaveLogger port config jobDesc =
   Warp.run port =<< mkApp slaveLogger config jobDesc
+
+
+
+
+
+
+
+
 
 
 {-

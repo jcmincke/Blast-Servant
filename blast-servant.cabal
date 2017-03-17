@@ -24,6 +24,7 @@ executable blast-servant-exe
     , blast
     , bytestring
     , cereal
+    , containers
     , monad-logger
     , persistent
     , persistent-template
