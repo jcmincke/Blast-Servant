@@ -1,7 +1,7 @@
 
 module Main where
 
-import           App
+import           Control.Distributed.Blast.Backend.Servant.App
 
 main :: IO ()
 main = return ()
