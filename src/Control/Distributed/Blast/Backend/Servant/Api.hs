@@ -12,7 +12,6 @@ import Data.Text
 import qualified  Data.ByteString.Lazy as LBS
 import qualified  Data.ByteString as BS
 
-import Database.Persist
 
 import Servant.API
 

@@ -19,6 +19,7 @@ import            Control.Concurrent
 import            Control.Concurrent.Async
 import            Control.Concurrent.MVar
 import            Control.Exception
+import            Control.Monad
 import            Control.Monad.IO.Class
 import            Control.Monad.Logger
 
@@ -43,6 +44,8 @@ import            Network.Stream
 import            Network.Wai
 import            Network.Wai.Handler.Warp as Warp
 
+import            System.Random
+
 import            System.Exit
 import            System.Posix.Process
 
@@ -65,7 +68,7 @@ type SlaveMap a b = M.Map Int (Maybe (SlaveContext (LoggingT IO) a b))
 
 data MasterRoleContext a = MkMasterRoleContext {
   slaveLocations :: M.Map Int (String, Int)
-  , theSeed :: Maybe a
+  , theSeed :: a
   , statefulSlaveMode :: Bool
 
 
@@ -103,6 +106,22 @@ initSlave slaveContext0 logger slaveRoleContextMVar slaveId bs = do
     return (MkSlaveRoleContext $ M.insert slaveId (Just slaveContext) slaveMap)
 
 
+--data SlaveContext m a b = MkSlaveContext {
+--  localSlaveId :: Int  -- todo maybe not useful
+--  , infos :: InfoMap
+--  , vault :: V.Vault
+--  , expGen :: a -> ProgramT (Syntax m) m (SExp 'Local (a, b))
+--  , config :: Config
+--  }
+
+
+--randomSlaveReset :: (S.Serialize a) => Controller a -> Int -> IO ()
+randomSlaveFailure (MkSlaveContext {..}) = do
+  let (MkConfig{..}) = config
+  r <- randomRIO (0.0, 1.0)
+  when (r > slaveAvailability) $ do
+    putStrLn "killing slave"
+    error "killing slave"
 
 processSlaveCommand :: (S.Serialize a, MonadIO m) =>
   SlaveContext (LoggingT IO) a b
@@ -117,6 +136,7 @@ processSlaveCommand slaveContext0 logger slaveRoleContextMVar slaveId bs = do
   case slaveContextM of
     Right slaveContext -> do
       let (slaveRequest::SlaveRequest) = B.decode bs
+      liftIO $ randomSlaveFailure slaveContext
       (resp::SlaveResponse, slaveContext') <- liftIO $ logger $ Slave.runCommand slaveRequest slaveContext
       let respBs = B.encode resp
       setResp <- liftIO $ setContext slaveContext' slaveRoleContextMVar
@@ -202,7 +222,9 @@ instance (S.Serialize a) => CommandClass MasterRoleContext a where
       -- in case a slave is restarted, it is the backend's responsibility to initialize it.
       isOk <- masterInitSlave s slaveId
       if isOk
-        then return Nothing
+        then do
+          putStrLn ("Slave:" ++ show slaveId ++ " is re-initialized")
+          return Nothing
         else do goInit (count - 1) (delay+1000)
 
     (ip, port) = slaveLocations M.! slaveId
@@ -222,7 +244,7 @@ instance (S.Serialize a) => CommandClass MasterRoleContext a where
 
   stop _ = return ()
   setSeed s@(MkMasterRoleContext {..}) a = do
-    let s' = s {theSeed = Just a}
+    let s' = s {theSeed = a}
     resetAll s'
     return s'
     where
@@ -268,9 +290,6 @@ masterInitSlave s@(MkMasterRoleContext {..}) slaveId = do
               req = req1 { rqBody=bs }
           in req
   bs = S.encode theSeed
-  --case seedM of
-  --      Just a -> S.encode a
-  --      Nothing -> error "Seed not there: should not happen"
 
 
 getPing :: Monad m => String -> m String
@@ -284,7 +303,7 @@ getKill = do
 
 
 masterServer :: (S.Serialize a) =>
-  (LoggingT IO (a, b) -> IO (a, b))
+  (forall t. LoggingT IO t -> IO t)
   -> (b -> Value)
   -> Config
   -> JobDesc a b
@@ -298,7 +317,7 @@ masterServer logger toValue blastConfig jobDesc =
 
 
 runMaster :: (S.Serialize a, MonadIO m) =>
-  (LoggingT IO (a, b) -> IO (a, b))
+  (forall t. LoggingT IO t -> IO t)
   -> (b -> c)
   -> Config
   -> JobDesc a b
@@ -317,11 +336,12 @@ runMaster logger toValue blastConfig jobDesc (MkMasterInitConfig{..}) = do
         Address ip port -> (i, (ip, port))
         _ -> error "env var not yet supported"
         ) [0 ..] slaveLocations
-  masterRoleContext = MkMasterRoleContext slaveLocMap (Just $ seed jobDesc) False
+  masterRoleContext = MkMasterRoleContext slaveLocMap (seed jobDesc) False
 
 
-doRunRec :: (CommandClass s a) =>
-  (LoggingT IO (a, b) -> IO (a, b)) -> Config -> s a -> JobDesc a b -> IO (a, b)
+--doRunRec ::  (CommandClass s a) =>
+doRunRec ::  (S.Serialize a) =>
+  (forall t. LoggingT IO t -> IO t) -> Config -> MasterRoleContext a -> JobDesc a b -> IO (a, b)
 doRunRec logger blastConfig@(MkConfig {..}) masterRoleContext (jobDesc@MkJobDesc {..}) = do
   (a, b) <- logger $ runComputation blastConfig masterRoleContext jobDesc
   a' <- liftIO $ reportingAction a b
@@ -344,7 +364,7 @@ runSlaveServer logger port blastConfig jobDesc =
 
 
 mkMasterApp :: (S.Serialize a, Monad m) =>
-  (LoggingT IO (a, b) -> IO (a, b))
+  (forall t. LoggingT IO t -> IO t)
   -> (b -> Value)
   -> Config
   -> JobDesc a b
@@ -353,7 +373,7 @@ mkMasterApp logger toValue blastConfig jobDesc = do
   return $ serve masterApi $ masterServer logger toValue blastConfig jobDesc
 
 runMasterServer :: S.Serialize a =>
-  (LoggingT IO (a, b) -> IO (a, b))
+  (forall t. LoggingT IO t -> IO t)
   -> Port
   -> (b -> Value)
   -> Config
@@ -383,7 +403,7 @@ runServant logger toValue blastConfig jobDesc = do
                                 Address ip port -> (i, (ip, port))
                                 _ -> error "env var not yet supported"
                                 ) [0 ..] slaveLocations
-        let masterRoleContext = MkMasterRoleContext slaveLocMap Nothing False
+        let masterRoleContext = MkMasterRoleContext slaveLocMap (seed jobDesc) False
         slavesInitialized <- masterInitAllSlaves masterRoleContext
         if slavesInitialized
           then do

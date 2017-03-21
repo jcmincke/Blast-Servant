@@ -80,7 +80,7 @@ jobDesc1 =
 
 main :: IO ()
 main = do
-  let config = MkConfig 1.0 True
+  let config = MkConfig 0.90 True
   runServant runStdoutLoggingT toValue config jobDesc1
   where
   toValue a = toJSON a

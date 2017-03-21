@@ -38,10 +38,7 @@ library
     , monad-logger
     , network-uri
     , optparse-applicative
-    , persistent
-    , persistent-template
-    , persistent-sqlite
-    , persistent-postgresql
+    , random
     , servant
     , servant-server
     , string-conversions
