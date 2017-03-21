@@ -9,7 +9,9 @@ module Control.Distributed.Blast.Backend.Servant.Api where
 import Data.Proxy
 import Data.Aeson
 import Data.Text
-import Data.ByteString.Lazy
+import qualified  Data.ByteString.Lazy as LBS
+import qualified  Data.ByteString as BS
+
 import Database.Persist
 
 import Servant.API
@@ -19,7 +21,8 @@ import Control.Distributed.Blast.Backend.Servant.Types
 
 
 type SlaveApi =
-   "slave" :> "cmd" :> Capture "slaveId" Int :> ReqBody '[OctetStream] ByteString :> Get '[OctetStream] ByteString
+   "slave" :> "cmd" :> Capture "slaveId" Int :> ReqBody '[OctetStream] LBS.ByteString :> Get '[OctetStream] LBS.ByteString
+  :<|> "slave" :> "init" :> Capture "slaveId" Int :> ReqBody '[OctetStream] BS.ByteString :> Get '[JSON] ()
   :<|> "slave" :> "ping" :>  Get '[JSON] String
   :<|> "slave" :> "kill" :>  Get '[JSON] ()
 

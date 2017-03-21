@@ -19,7 +19,7 @@ import Data.ByteString.Lazy
 data SlaveLocation =
   EnvVar String
   | Address String Int
-
+  deriving Show
 
 data MasterInitConfig = MkMasterInitConfig {
   slaveLocations :: [SlaveLocation]

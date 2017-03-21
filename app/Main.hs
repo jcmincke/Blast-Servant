@@ -54,7 +54,7 @@ fib n = fib (n-1) + fib (n-2)
 comp1 :: () -> LocalComputation ((), Int)
 comp1 () = do
       -- create a remote list [32, 32, 32 ,...]
-      r1 <- rconst [ (31::Int)| _ <- [1..32::Int]]
+      r1 <- rconst [ (34::Int)| _ <- [1..3200::Int]]
       -- map fib over the remote list r1
       r2 <- rmap (fun fib) r1
       -- repatriate the results locally.
@@ -83,7 +83,7 @@ main = do
   let config = MkConfig 1.0 True
   runServant runStdoutLoggingT toValue config jobDesc1
   where
-  toValue _ = toJSON ("fini"::String)
+  toValue a = toJSON a
 
 
 

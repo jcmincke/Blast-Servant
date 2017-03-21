@@ -30,6 +30,7 @@ executable bs
     , deepseq
     , directory
     , HTTP
+    , http-conduit
     , http-media
     , monad-logger
     , network-uri

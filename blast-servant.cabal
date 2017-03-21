@@ -22,6 +22,7 @@ library
     Control.Distributed.Blast.Backend.Servant.Api
     , Control.Distributed.Blast.Backend.Servant.App
     , Control.Distributed.Blast.Backend.Servant.Types
+    , Control.Distributed.Blast.Backend.Servant.CliArgs
   other-modules:
   build-depends:
     base >= 4.7 && < 5
@@ -36,6 +37,7 @@ library
     , http-media
     , monad-logger
     , network-uri
+    , optparse-applicative
     , persistent
     , persistent-template
     , persistent-sqlite
@@ -46,6 +48,7 @@ library
     , text
     , transformers
     , unix
+    , yaml
     , wai
     , warp
   default-language:    Haskell2010

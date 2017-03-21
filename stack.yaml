@@ -10,7 +10,7 @@ packages:
 - app
 - location:
     git: git@github.com:jcmincke/blast
-    commit: f457041e00b4dcc66c0dbd491b4a0150f969c588
+    commit: 30a15c039856f78ebc15a4d3de8c9a5e1cb7efd7
 #  subdirs:
 #  - auto-update
 #  - wai
