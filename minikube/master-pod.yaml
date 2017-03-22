@@ -1,0 +1,76 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: master
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: master
+      labels:
+        app: master
+    spec:
+      containers:
+      - name: master
+        image: jcmincke/blastit:latest
+        ports:
+        - containerPort: 5000
+        command: ["./bs"]
+        args: ["master", "--port=5000"]
+
+
+# apiVersion: extensions/v1beta1
+# kind: Deployment
+# metadata:
+#  name: master
+# spec:
+#  replicas: 1
+#  template:
+#    metadata:
+#      labels:
+#        app: web
+#    spec:
+#      containers:
+#        –  name: master
+#           image: jcmincke/blastit:latest
+#           ports:
+#             – containerPort: 5000
+#           command: ["./bs"]
+#           args: ["master", "--port=5000"]
+
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: master
+#   labels:
+#     purpose: demonstrate-blast
+# spec:
+#   containers:
+#   - name: master
+#     image: jcmincke/blastit:latest
+#     ports:
+#         - containerPort: 5000
+#     command: ["./bs"]
+#     args: ["master", "--port=5000"]
+
+
+
+
+
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: rss-site
+#   labels:
+#     app: web
+# spec:
+#   containers:
+#     - name: front-end
+#       image: nginx
+#       ports:
+#         - containerPort: 80
+#     - name: rss-reader
+#       image: nickchase/rss-php-nginx:v1

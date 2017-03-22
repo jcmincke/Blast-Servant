@@ -118,25 +118,62 @@ main3 = do
     , Address "127.0.0.1" 5001
     ]
 
-  masterInitConfig = MkMasterInitConfig [
+  masterInitConfig3 = MkMasterInitConfig [
     EnvVar "SLAVE_IP" "SLAVE_PORT"
     , EnvVar "SLAVE_IP" "SLAVE_PORT"
     , EnvVar "SLAVE_IP" "SLAVE_PORT"
     , EnvVar "SLAVE_IP" "SLAVE_PORT"
     ]
 
+  masterInitConfig = MkMasterInitConfig [
+    EnvVar "SLAVE_1_SERVICE_HOST" "SLAVE_1_SERVICE_PORT"
+    , EnvVar "SLAVE_1_SERVICE_HOST" "SLAVE_1_SERVICE_PORT"
+    , EnvVar "SLAVE_2_SERVICE_HOST" "SLAVE_2_SERVICE_PORT"
+    , EnvVar "SLAVE_2_SERVICE_HOST" "SLAVE_2_SERVICE_PORT"
+    ]
+
+  masterInitConfig4 = MkMasterInitConfig [
+    Address "10.0.0.215" 5001
+    ,Address "10.0.0.215" 5001
+    ,Address "10.0.0.215" 5001
+    ,Address "10.0.0.215" 5001
+--      Address "192.168.99.100" 32183
+--    , Address "192.168.99.100" 32183
+--    , Address "192.168.99.100" 32183
+--    , Address "192.168.99.100" 32183
+--      Address "10.0.0.181" 5001
+    ]
+
   request =
     let req0 = S.parseRequest_ url
         req1 = S.setRequestBodyJSON masterInitConfig req0
     in req1
-  url = "http://127.0.0.1:5000/master/start"
+  --url = "http://127.0.0.1:5000/master/start"
+  url = "http://192.168.99.100:32057/master/start"
   bs =  (A.encode masterInitConfig)
 --  bs =  (toJSON masterInitConfig)
 
 
+-- slave 2 http://192.168.99.100:32458
+--master 30874
+--http://192.168.99.100:31194
+--slave
+-- http://192.168.99.100:31490
+
+{--
+master
+curl http://192.168.99.100:31334/master/ping
+
+curl http://192.168.99.100:31334/master/kill
+
+slave
+curl http://192.168.99.100:32183/slave/ping
+
+curl http://192.168.99.100:32183/slave/kill
+
+-}
+
 {-}
-
-
 
 data SlaveLocation =
   EnvVar String

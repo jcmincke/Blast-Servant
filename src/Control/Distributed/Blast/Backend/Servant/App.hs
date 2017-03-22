@@ -310,7 +310,7 @@ masterServer :: (S.Serialize a) =>
   -> Server MasterApi
 masterServer logger toValue blastConfig jobDesc =
   (runMaster logger toValue blastConfig jobDesc)
-  :<|> (getPing "Slave")
+  :<|> (getPing "Master")
   :<|> getKill
 
 

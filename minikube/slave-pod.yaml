@@ -1,0 +1,131 @@
+#apiVersion: extensions/v1beta1
+#kind: Deployment
+#metadata:
+#  name: slave-1
+#spec:
+#  replicas: 1
+#  template:
+#    metadata:
+#      labels:
+#        app: blast
+#    spec:
+#      containers:
+#        - name: slave-1
+#          image: jcmincke/blastit:latest
+#          ports:
+#          – containerPort: 5001
+#          command: ["./bs"]
+#          args: ["slave", "--port=5001"]
+
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: slave-1
+spec:
+  replicas: 1
+#  selector:
+#    app: nginx
+  template:
+    metadata:
+      name: slave-1
+      labels:
+        app: slave-1
+    spec:
+      containers:
+      - name: slave-1
+        image: jcmincke/blastit:latest
+        ports:
+        - containerPort: 5001
+        command: ["./bs"]
+        args: ["slave", "--port=5001"]
+
+---
+
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: slave-2
+spec:
+  replicas: 1
+#  selector:
+#    app: nginx
+  template:
+    metadata:
+      name: slave-2
+      labels:
+        app: slave-2
+    spec:
+      containers:
+      - name: slave-2
+        image: jcmincke/blastit:latest
+        ports:
+        - containerPort: 5002
+        command: ["./bs"]
+        args: ["slave", "--port=5002"]
+
+
+
+#         volumeMounts:
+#         - name: vmfs-vmdk-storage
+#           mountPath: /data/
+#      volumes:
+#      - name: vmfs-vmdk-storage
+#        vsphereVolume:
+#          volumePath: "[Datastore] volumes/testdir"
+#          fsType: ext4
+
+
+
+#apiVersion: extensions/v1beta1
+#kind: Deployment
+#metadata:
+# name: slave-1
+# spec:
+#  replicas: 1
+#  template:
+#    metadata:
+#      labels:
+#        app: web
+#spec:
+#   containers:
+#     –  name: slave-1
+#        image: jcmincke/blastit:latest
+#        ports:
+#          – containerPort: 5001
+#        command: ["./bs"]
+#        args: ["slave", "--port=5001"]
+
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: slave-1
+#   labels:
+#     purpose: demonstrate-blast
+# spec:
+#   containers:
+#   - name: slave-1
+#     image: jcmincke/blastit:latest
+#     ports:
+#         - containerPort: 5001
+#     command: ["./bs"]
+#     args: ["slave", "--port=5001"]
+
+
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: rss-site
+#   labels:
+#     app: web
+# spec:
+#   containers:
+#     - name: front-end
+#       image: nginx
+#       ports:
+#         - containerPort: 80
+#     - name: rss-reader
+#       image: nickchase/rss-php-nginx:v1
