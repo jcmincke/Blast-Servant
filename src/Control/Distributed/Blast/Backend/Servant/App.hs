@@ -292,8 +292,9 @@ masterInitSlave s@(MkMasterRoleContext {..}) slaveId = do
   bs = S.encode theSeed
 
 
-getPing :: Monad m => String -> m String
+getPing :: MonadIO m => String -> m String
 getPing msg = do
+  liftIO $ putStrLn "Pinged"
   return ("Hello, I am your "++msg)
 
 getKill :: MonadIO m => m ()
@@ -323,6 +324,7 @@ runMaster :: (S.Serialize a, MonadIO m) =>
   -> JobDesc a b
   -> MasterInitConfig -> m c
 runMaster logger toValue blastConfig jobDesc (MkMasterInitConfig{..}) = do
+  liftIO $ putStrLn "Starting Master"
   slaveLocMap <- liftIO $ createSlaveLocMap slaveLocations
   let masterRoleContext = MkMasterRoleContext slaveLocMap (seed jobDesc) False
   slavesInitialized <- liftIO $ masterInitAllSlaves masterRoleContext
@@ -415,9 +417,12 @@ createSlaveLocMap slaveLocations = do
   where
   proc (i, (Address ip port)) = return (i, (ip, port))
   proc (i, (EnvVar ipn portn)) = do
-    ip <- getEnv ipn
-    port <- getEnv portn
-    return (i, (ip, read port::Int))
-
+    putStrLn $ "Retrieving env vars: "++ ipn ++" and "++portn
+    ipM <- lookupEnv ipn
+    portM <- lookupEnv portn
+    putStrLn $ "Values: "++ show ipM ++" and "++show portM
+    case (ipM, portM) of
+      (Just ip, Just port) -> return (i, (ip, read port::Int))
+      _ -> error "Cannot retrieve env vars"
 -- europe-west1-b
 

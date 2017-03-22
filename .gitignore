@@ -31,5 +31,7 @@ dist-stack/
 \#*\#
 .\#*
 
+out/
+
 # Vim
 *.swp
