@@ -1,0 +1,5 @@
+- {envIp: SLAVE_IP, envPort: SLAVE_PORT}
+- {envIp: SLAVE_IP, envPort: SLAVE_PORT}
+- {envIp: SLAVE_IP, envPort: SLAVE_PORT}
+- {envIp: SLAVE_IP, envPort: SLAVE_PORT}
+- {envIp: SLAVE_IP, envPort: SLAVE_PORT}

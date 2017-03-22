@@ -108,7 +108,7 @@ main3 = do
       print err
   return ()
   where
-  masterInitConfig = MkMasterInitConfig [
+  masterInitConfig2 = MkMasterInitConfig [
     Address "127.0.0.1" 5001
     , Address "127.0.0.1" 5001
     , Address "127.0.0.1" 5001
@@ -116,6 +116,13 @@ main3 = do
     , Address "127.0.0.1" 5001
     , Address "127.0.0.1" 5001
     , Address "127.0.0.1" 5001
+    ]
+
+  masterInitConfig = MkMasterInitConfig [
+    EnvVar "SLAVE_IP" "SLAVE_PORT"
+    , EnvVar "SLAVE_IP" "SLAVE_PORT"
+    , EnvVar "SLAVE_IP" "SLAVE_PORT"
+    , EnvVar "SLAVE_IP" "SLAVE_PORT"
     ]
 
   request =

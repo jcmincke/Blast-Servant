@@ -17,7 +17,7 @@ import Data.ByteString.Lazy
 
 
 data SlaveLocation =
-  EnvVar String
+  EnvVar String String
   | Address String Int
   deriving Show
 
@@ -29,8 +29,8 @@ data MasterInitConfig = MkMasterInitConfig {
 
 instance FromJSON SlaveLocation where
   parseJSON = withObject "SlaveLocation" $ \o -> asum [
-    EnvVar <$> o .: "envVar" ,
-    Address <$> o .: "ip" <*> o .: "port" ]
+    EnvVar <$> o .: "envIp" <*> o .: "envPort"
+    , Address <$> o .: "ip" <*> o .: "port" ]
 
 instance FromJSON MasterInitConfig where
   parseJSON = withObject "MasterInitConfig" $ \o ->
@@ -38,12 +38,14 @@ instance FromJSON MasterInitConfig where
 
 
 instance ToJSON SlaveLocation where
-  toJSON (EnvVar n) = object [
-    "envVar" .= n]
+  toJSON (EnvVar ip port) = object [
+    "envIp" .= ip
+    , "envPort" .= port
+    ]
   toJSON (Address ip port) = object [
     "ip" .= ip
     , "port" .= port
-     ]
+    ]
 
 
 instance ToJSON MasterInitConfig where

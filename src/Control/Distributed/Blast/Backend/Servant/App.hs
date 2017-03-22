@@ -23,7 +23,6 @@ import            Control.Monad
 import            Control.Monad.IO.Class
 import            Control.Monad.Logger
 
---import            Data.Aeson (toJson)
 import            Data.Aeson.Types (toJSON, Value)
 import            Data.Binary as B
 import qualified  Data.ByteString.Lazy as LBS
@@ -47,6 +46,7 @@ import            Network.Wai.Handler.Warp as Warp
 import            System.Random
 
 import            System.Exit
+import            System.Environment
 import            System.Posix.Process
 
 
@@ -323,23 +323,16 @@ runMaster :: (S.Serialize a, MonadIO m) =>
   -> JobDesc a b
   -> MasterInitConfig -> m c
 runMaster logger toValue blastConfig jobDesc (MkMasterInitConfig{..}) = do
+  slaveLocMap <- liftIO $ createSlaveLocMap slaveLocations
+  let masterRoleContext = MkMasterRoleContext slaveLocMap (seed jobDesc) False
   slavesInitialized <- liftIO $ masterInitAllSlaves masterRoleContext
   if slavesInitialized
     then do
       (_, b) <- liftIO $ doRunRec logger blastConfig masterRoleContext jobDesc
       return $ toValue b
     else error "Cannot initialize all the slaves"
-  where
-  -- build slave location map
-  slaveLocMap = M.fromList $ L.zipWith (\i loc ->
-      case loc of
-        Address ip port -> (i, (ip, port))
-        _ -> error "env var not yet supported"
-        ) [0 ..] slaveLocations
-  masterRoleContext = MkMasterRoleContext slaveLocMap (seed jobDesc) False
 
 
---doRunRec ::  (CommandClass s a) =>
 doRunRec ::  (S.Serialize a) =>
   (forall t. LoggingT IO t -> IO t) -> Config -> MasterRoleContext a -> JobDesc a b -> IO (a, b)
 doRunRec logger blastConfig@(MkConfig {..}) masterRoleContext (jobDesc@MkJobDesc {..}) = do
@@ -394,15 +387,12 @@ runServant logger toValue blastConfig jobDesc = do
   print cmdOpts
   return ()
   where
+
   runServantAsMaster (MkMasterOpts {..}) =
     case slaveFile of
       Just fn -> do
         slaveLocations <- readSlaveLocationFiles fn
-        let slaveLocMap = M.fromList $ L.zipWith (\i loc ->
-                              case loc of
-                                Address ip port -> (i, (ip, port))
-                                _ -> error "env var not yet supported"
-                                ) [0 ..] slaveLocations
+        slaveLocMap <-  createSlaveLocMap slaveLocations
         let masterRoleContext = MkMasterRoleContext slaveLocMap (seed jobDesc) False
         slavesInitialized <- masterInitAllSlaves masterRoleContext
         if slavesInitialized
@@ -420,149 +410,14 @@ runServant logger toValue blastConfig jobDesc = do
     runSlaveServer logger port blastConfig jobDesc
     return ()
 
+createSlaveLocMap slaveLocations = do
+  (mapM proc $ L.zip [0 ..] slaveLocations) >>= (return . M.fromList)
+  where
+  proc (i, (Address ip port)) = return (i, (ip, port))
+  proc (i, (EnvVar ipn portn)) = do
+    ip <- getEnv ipn
+    port <- getEnv portn
+    return (i, (ip, read port::Int))
 
 -- europe-west1-b
 
-
-{-
-runMaster logger toValue blastConfig jobDesc (MkMasterInitConfig{..}) = do
-  (_, b) <- liftIO $ doRunRec logger blastConfig masterRoleContext jobDesc
-  return $ toValue b
-  where
-  -- build slave location map
-  slaveLocMap = M.fromList $ L.zipWith (\i loc ->
-      case loc of
-        Address ip port -> (i, (ip, port))
-        _ -> error "env var not yet supported"
-        ) [0 ..] slaveLocations
-  masterRoleContext = MkMasterRoleContext slaveLocMap Nothing False
-
-
-
-data MasterOpts = MkMasterOpts {
-  masterPort :: String
-  , slaveFile :: Maybe String
-  }
-  deriving (Show)
-
-data SlaveOpts = MkSlaveOpts {
-  slavePort :: String
-  }
-  deriving (Show)
-
-data Opts =
-    MasterOpts MasterOpts
-    | SlaveOpts SlaveOpts
-  deriving (Show)
-
-ensureNoRole mvar action = do
-  modifyMVar mvar handler
-  where
-  handler NoRole = do
-    (res, newRole) <- action
-    return (Right res, newRole)
-  handler _ = return (Left "error", NoRole)
-
-withMasterRole mvar action = do
-  modifyMVar mvar handler
-  where
-  handler (MasterRoleContext ctx) = do
-    (res, newCtx) <- action
-    return (Right res, MasterRoleContext newCtx)
-  handler rctx = return (Left "error", rctx)
-
-withSlaveRole mvar action = do
-  rctx <- readMVar mvar
-
-  modifyMVar mvar handler
-  where
-  handler (MasterRoleContext ctx) = do
-    (res, newCtx) <- action
-    return (Right res, MasterRoleContext newCtx)
-  handler rctx = return (Left "error", rctx)
-
--}
-
-
-
-{-
-  slaveLogger :: forall m a. (MonadIO m) => LoggingT m a -> m a   -- ^ Logger.
-
-makeSlaveContext :: (MonadLoggerIO m)
-  => Config               -- ^ Configuration
-  -> Int                  -- ^Index of the slave.
-  -> JobDesc a b          -- ^ Job description
-  -> SlaveContext m a b   -- ^ Slave Context
-
-
--- | Describes the current context of a slave.
-data SlaveContext m a b = MkSlaveContext {
-  localSlaveId :: Int
-  , infos :: InfoMap
-  , vault :: V.Vault
-  , expGen :: a -> ProgramT (Syntax m) m (SExp 'Local (a, b))
-  , config :: Config
-  }
-
--- | Creates a "SlaveContext" for a given slave.
-makeSlaveContext :: (MonadLoggerIO m)
-  => Config               -- ^ Configuration
-  -> Int                  -- ^Index of the slave.
-  -> JobDesc a b          -- ^ Job description
-  -> SlaveContext m a b   -- ^ Slave Context
-makeSlaveContext config slaveId (MkJobDesc {..}) =
-  MkSlaveContext slaveId M.empty V.empty computationGen config
-
--- | Runs the given command against the specified state of a slave.
-runCommand :: forall a b m. (S.Serialize a, MonadLoggerIO m)
-  => SlaveRequest                          -- ^ Command.
-  -> SlaveContext m a b                    -- ^ Slave context
-  -> m (SlaveResponse, SlaveContext m a b) -- ^ Returns the response from the slave and the new slave context.
-
-
-
-runDB pool query = flip runSqlPersistMPool pool query
-
-getPersons pool = do
-  persons <- runDB pool $ selectList [] [Asc PersonPersonName, Asc PersonPersonFirstName]
-  return $  persons
-
-getPerson pool pid = do
-      mPerson <- runDB pool $ get pid
-      return $ mPerson
-
-
-
-createPerson pool fn n = runDB pool $ do
-    oid <- insert (Person fn n)
-    return oid
-
-
-deletePerson pool pid = do
-    oid <- runDB pool $ delete pid
-    return ()
-
-
-updatePerson pool personId fn n = do
-    oid <- runDB pool $ repsert personId (Person fn n)
-    return ()
--}
-
-
-
-  {-}
-app :: ConnectionPool -> Application
-app pool = serve api $ server pool
-
-
-mkApp :: FilePath -> IO Application
-mkApp sqliteFile = do
-  pool <- runStderrLoggingT $ do
-    createPostgresqlPool "host=localhost port=5432 user=V3 dbname=phoenix password=" 5
-  runSqlPool (runMigration migrateAll) pool
-  return $ app pool
-
-run :: FilePath -> IO ()
-run sqliteFile =
-  Warp.run 3000 =<< mkApp sqliteFile
-  -}
